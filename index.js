@@ -156,12 +156,12 @@ for(m=0;m<sumChanges.length;m++){
 
 
  console.log(`+-----------------FINANCIAL ANAYLSIS-----------------+`); 
- console.log(`|                                                    |`);
- console.log(`|Total Months: ${totalMonths}                                    |`); 
- console.log(`|Total: $${subtotalFinances}                                     |`);
- console.log(`|Avg. Change: ${totalChange /(totalMonths-1)}                    |`); 
- console.log(`|Greatest Increase: $${lrgstRise} in ${lrgstRiseMonth}              |`); 
- console.log(`|Greatest Decrease: $${lrgstFall} in ${lrgstFallMonth}             |`);
+ console.log(``);
+ console.log(`[1] Total Months: ${totalMonths}`); 
+ console.log(`[2] Total: $${subtotalFinances}`);
+ console.log(`[3] Avg. Change: $${avgChange.toFixed(2)}`); 
+ console.log(`[4] Greatest Increase: $${lrgstRise} in ${lrgstRiseMonth}`); 
+ console.log(`[5] Greatest Decrease: $${lrgstFall} in ${lrgstFallMonth}`);
  console.log(`+----------------------------------------------------+`);
 
 alert("+----------------Financial Analysis----------------+\n" + "Total Months: " + totalMonths + "\nTotal: $" + subtotalFinances +"\nAvg. Change: $"+ avgChange.toFixed(2)+ "\nGreatest Increase: $"+lrgstRise + " in " + lrgstRiseMonth +"\nGreatest Decrease: $" + lrgstFall + " in " +lrgstFallMonth + "\n+----------------------END----------------------+");
