@@ -114,53 +114,42 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
-// var monthIndex = 0;
-var financeIndex =1;
-var totalMonths = 0;
+var mInd = 0;
+var fInd =1;
+let totalMonths = 0;
 var subtotalFinances =0;
-var difference = [];
+var sumChanges = [];
 var totalChange = 0;
 var x = 0;
+var greatestFall =0;
+var greatestFallMonth = "";
+var greatestRise =0;
+var greatestRiseMonth ="";
 
+//create an array to identify total months and the total finances;
 for (i = 0; i <= finances.length; i++){
   totalMonths = i ++
 } for (j = 0; j < finances.length; j++){
-  subtotalFinances += finances[j][financeIndex]
+  subtotalFinances += finances[j][1]
 }
 
 
-// for (k = 1; k < finances.length; k++){
-//   for(j = k-1; j < k;j++){
-//     console.log("kval "+finances[k][financeIndex]);
-//     console.log("jval "+finances[j][financeIndex]);
-//     if(finances[k][financeIndex] > finances[j][financeIndex]){
-//       difference.push(finances[k][financeIndex]-finances[j][financeIndex])
-//       }else if
-//         (difference.push(finances[j][financeIndex]-finances[k][financeIndex])){
-//       }
-//     }}
-
-for (k=1; k < finances.length; k++){
-  var change = finances[k][financeIndex]-finances[k-1][financeIndex];
-  totalChange += change;
+//create an array to associate change intervals and value with month
+for(k=1; k < finances.length; k++){
+    change = finances[k][1]-finances[k-1][1];
+    month = finances[k][0];
+    sumChanges.push([change, month]);
+    totalChange += change;
+ 
    }
-    
+
+ console.log(sumChanges);
 
 
-
-//       change += finances[k][financeIndex] - finances[j][financeIndex];
-//     } else {
-//       change -= finances[j][financeIndex] - finances[k][financeIndex];
-//     }
-    
-//   }
-// }
-//   // if(finances[k][financeIndex]>finances[k-1][financeIndex])
-//   change += Math.abs(finances[k][financeIndex], finances[k-1][financeIndex]);
-// }
-
+ 
 
 
 console.log(totalMonths);
 console.log(subtotalFinances);
 console.log(totalChange / (totalMonths -1));
+console.log(greatestFall);
