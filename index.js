@@ -114,17 +114,14 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
-var mInd = 0;
-var fInd =1;
 let totalMonths = 0;
 var subtotalFinances =0;
 var sumChanges = [];
 var totalChange = 0;
-var x = 0;
-var greatestFall =0;
-var greatestFallMonth = "";
-var greatestRise =0;
-var greatestRiseMonth ="";
+var lrgstFall =0;
+var lrgstFallMonth = "";
+var lrgstRise =0;
+var lrgstRiseMonth ="";
 
 //create an array to identify total months and the total finances;
 for (i = 0; i <= finances.length; i++){
@@ -138,18 +135,31 @@ for (i = 0; i <= finances.length; i++){
 for(k=1; k < finances.length; k++){
     change = finances[k][1]-finances[k-1][1];
     month = finances[k][0];
-    sumChanges.push([change, month]);
+    sumChanges.push([month, change]);
     totalChange += change;
  
    }
 
- console.log(sumChanges);
+for(l=0;l<sumChanges.length;l++){
+  if(sumChanges[l][1] > lrgstRise){
+    lrgstRise = sumChanges[l][1]
+    lrgstRiseMonth = sumChanges[l][0]}
+      }
+
+for(m=0;m<sumChanges.length;m++){
+  if(sumChanges[m][1] < lrgstFall){
+    lrgstFall = sumChanges[m][1]
+    lrgstFallMonth = sumChanges[m][0]}
+    }
+          
+            
+  
 
 
- 
-
-
+console.log(lrgstRise);
+console.log(lrgstRiseMonth);
+console.log(lrgstFall);
+console.log(lrgstFallMonth);
 console.log(totalMonths);
 console.log(subtotalFinances);
 console.log(totalChange / (totalMonths -1));
-console.log(greatestFall);
