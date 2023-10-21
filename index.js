@@ -123,6 +123,7 @@ var lrgstFallMonth = "";
 var lrgstRise =0;
 var lrgstRiseMonth ="";
 
+
 //create an array to identify total months and the total finances;
 for (i = 0; i <= finances.length; i++){
   totalMonths = i ++
@@ -130,14 +131,13 @@ for (i = 0; i <= finances.length; i++){
   subtotalFinances += finances[j][1]
 }
 
-
 //create an array to associate change intervals and value with month
 for(k=1; k < finances.length; k++){
     change = finances[k][1]-finances[k-1][1];
     month = finances[k][0];
     sumChanges.push([month, change]);
     totalChange += change;
- 
+    var avgChange = totalChange /(totalMonths-1);
    }
 
 for(l=0;l<sumChanges.length;l++){
@@ -152,14 +152,25 @@ for(m=0;m<sumChanges.length;m++){
     lrgstFallMonth = sumChanges[m][0]}
     }
           
-            
-  
 
 
-console.log(lrgstRise);
-console.log(lrgstRiseMonth);
-console.log(lrgstFall);
-console.log(lrgstFallMonth);
-console.log(totalMonths);
-console.log(subtotalFinances);
-console.log(totalChange / (totalMonths -1));
+
+ console.log(`+-----------------FINANCIAL ANAYLSIS-----------------+`); 
+ console.log(`|                                                    |`);
+ console.log(`|Total Months: ${totalMonths}                                    |`); 
+ console.log(`|Total: $${subtotalFinances}                                     |`);
+ console.log(`|Avg. Change: ${totalChange /(totalMonths-1)}                    |`); 
+ console.log(`|Greatest Increase: $${lrgstRise} in ${lrgstRiseMonth}              |`); 
+ console.log(`|Greatest Decrease: $${lrgstFall} in ${lrgstFallMonth}             |`);
+ console.log(`+----------------------------------------------------+`);
+
+alert("+----------------Financial Analysis----------------+\n" + "Total Months: " + totalMonths + "\nTotal: $" + subtotalFinances +"\nAvg. Change: $"+ avgChange.toFixed(2)+ "\nGreatest Increase: $"+lrgstRise + " in " + lrgstRiseMonth +"\nGreatest Decrease: $" + lrgstFall + " in " +lrgstFallMonth + "\n+----------------------END----------------------+");
+
+
+// console.log(lrgstRise);
+// console.log(lrgstRiseMonth);
+// console.log(lrgstFall);
+// console.log(lrgstFallMonth);
+// console.log(totalMonths);
+// console.log(subtotalFinances);
+// console.log(totalChange / (totalMonths -1));
