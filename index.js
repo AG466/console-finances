@@ -1,29 +1,3 @@
-// ## Instructions
-
-
-// 2. Copy the starter files in your local git repository.
-
-// You have been given a dataset composed of arrays with two fields, Date and Profit/Losses.
-
-// Your task is to write JavaScript code that analyzes the records to calculate each of the following:
-
-// * The total number of months included in the dataset.
-
-// * The net total amount of Profit/Losses over the entire period.
-
-// * The average of the **changes** in Profit/Losses over the entire period.
-//   * You will need to track what the total change in Profit/Losses are from month to month and then find the average.
-//   * (`Total/(Number of months - 1)`)
-
-// * The greatest increase in Profit/Losses (date and amount) over the entire period.
-
-// * The greatest decrease in Profit/Losses (date and amount) over the entire period.
-
-// When you open your code in the browser your resulting analysis should look similar to the following:
-
-
-
-
 
 var finances = [
   ['Jan-2010', 867884],
@@ -114,7 +88,8 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
-let totalMonths = 0;
+//initialise variables.
+let totalMonths = 0; 
 var subtotalFinances =0;
 var sumChanges = [];
 var totalChange = 0;
@@ -140,12 +115,13 @@ for(k=1; k < finances.length; k++){
     var avgChange = totalChange /(totalMonths-1);
    }
 
+//counter iterates over array. Counter value compares against variable to hold largest value. If val at current index greater than variable val- variable val set equal to value at index.
 for(l=0;l<sumChanges.length;l++){
   if(sumChanges[l][1] > lrgstRise){
     lrgstRise = sumChanges[l][1]
     lrgstRiseMonth = sumChanges[l][0]}
       }
-
+// mirrors tracker for largest number
 for(m=0;m<sumChanges.length;m++){
   if(sumChanges[m][1] < lrgstFall){
     lrgstFall = sumChanges[m][1]
@@ -153,7 +129,7 @@ for(m=0;m<sumChanges.length;m++){
     }
           
 
-
+//Prints results to console.
 
  console.log(`+-----------------FINANCIAL ANAYLSIS-----------------+`); 
  console.log(``);
@@ -164,13 +140,7 @@ for(m=0;m<sumChanges.length;m++){
  console.log(`[5] Greatest Decrease: $${lrgstFall} in ${lrgstFallMonth}`);
  console.log(`+----------------------------------------------------+`);
 
+//alert results.
 alert("+----------------Financial Analysis----------------+\n" + "Total Months: " + totalMonths + "\nTotal: $" + subtotalFinances +"\nAvg. Change: $"+ avgChange.toFixed(2)+ "\nGreatest Increase: $"+lrgstRise + " in " + lrgstRiseMonth +"\nGreatest Decrease: $" + lrgstFall + " in " +lrgstFallMonth + "\n+----------------------END----------------------+");
 
 
-// console.log(lrgstRise);
-// console.log(lrgstRiseMonth);
-// console.log(lrgstFall);
-// console.log(lrgstFallMonth);
-// console.log(totalMonths);
-// console.log(subtotalFinances);
-// console.log(totalChange / (totalMonths -1));
