@@ -1,99 +1,96 @@
 # console-finances
 Javascript Financial Console
+
 # Unit 4 Challenge: Console Finances
+This project implements several JavaScript algortithms which operate over the array variable "finances" to compute summary statistics for the changes to the financial information contained within the finances dataset. The information is displayed via alerts to a HTML page and are simultaneuosly logged to the "console". 
 
-## Overview
+## Project Brief:
+This project had 5 aims.
 
-In this challenge, you'll be using the concepts you've learned to complete the required activity. This activity presents a real-world situation in which your newfound JavaScript skills will come in handy. You are tasked with creating code for analyzing the financial records of a company. You have been provided with a financial dataset in the `starter/index.js` file.
+To calculate the number of months in the dataset "finances".
+To calculate the net profit / loss over the period covered by the dataset finances.
+To calculate the greatest increase in profit / loss over the period covered by finances.
+To calculate the greatest decrease in profit / loss over the period covered by finances.
+To display the calculations to an end-user.
 
-## Instructions
+I will discuss this project in terms of the algorithms used and in terms of the final outputs.
 
-1. Create a new GitHub repo called `Console-Finances`. Then, clone it to your computer.
+## Algorithm 1. Calculating Total Months and Net Balance.
 
-2. Copy the starter files in your local git repository.
+The total number of months and the net balance were calculated using the following for loop:
 
-You have been given a dataset composed of arrays with two fields, Date and Profit/Losses.
+![Algorithm calculates number of months and sum of values](Assets/alg1.png)
 
-Your task is to write JavaScript code that analyzes the records to calculate each of the following:
+It was quickly identified that the total number of months in the dataset concerned was equal to the number of items in the array finances.
 
-* The total number of months included in the dataset.
+It was thus the case that iteration over the entire array "finances" would provide the figure for the number of months.
 
-* The net total amount of Profit/Losses over the entire period.
+A counter (Variable "i") was therefore used which was incremented from a start of 0 up to the length of the dataset finances to provide the figure for the total number of months. The result being 86.
 
-* The average of the **changes** in Profit/Losses over the entire period.
-  * You will need to track what the total change in Profit/Losses are from month to month and then find the average.
-  * (`Total/(Number of months - 1)`)
+It is important to note that the solving algorithm used in this project would not solve for a count of unique months as no check is made against the elements of the array operated over to check for the reoccurence of some value. As this fell out of scope, it is of no concern for this project, but does highlight a limitation of the algorithm for use in scenarios where a unique count is required. 
 
-* The greatest increase in Profit/Losses (date and amount) over the entire period.
+A possible solution should a unique count be required could draw upon conversion of the array to a set and the subsequent use of .size to find the number of unique values in the set implementation of "finances".
 
-* The greatest decrease in Profit/Losses (date and amount) over the entire period.
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/size
 
-When you open your code in the browser your resulting analysis should look similar to the following:
+In terms of the calculation of net profit / loss over the period covered by the dataset, each element in the array finances at column index [1] (Which stored the actual financial information) - was added to the variable "subtotalFinances" such that this variable stored the sum value of all of the financial information of the finances array upon iteration over the whole array.
 
-  ```text
-  Financial Analysis 
-  ----------------
-  Total Months: 86
-  Total: $38382578
-  Average Change: -2315.12
-  Greatest Increase in Profits/Losses: Feb-2012 ($1926159)
-  Greatest Decrease in Profits/Losses: Sep-2013 ($-2196167)
-  ```
+The array was iterated over through a sub loop which used the counter "j".
 
-Your final code should print the analysis to the console.
+The result gained for the sum of all figures was $38382578.
 
-**Hints:**
+![print out of the total months and sum of values](Assets/print-out-months-total.png)
 
-* You will need to do some research on your own for this project!
 
-* Remember, in order to combine strings and variables in the console you will need to use **concatenation**.
+## Algorithm 2. Calculation of Average Change and Creation of a New Array Storing Change Values.
 
-* How do you only print to the nearest 100th in JavaScript?
+The following algorithm calcualtes the average change between values in the array finances and creates an array sumChanges which prepares the data required for identification of the largest increase / decrease:
 
-## Grading Requirements
+![Algorithm calculating greatest change between values and creates array storing change value + month of change](Assets/alg2.png)
 
-This homework is graded based on the following criteria:
+This loop starts with a counter k set to the value of 1 as the first 'change' is found in the difference between array element 1 and array element 0.
 
-### Technical Acceptance Criteria: 40%
+On each iteration, change was calculated as the difference between k - the antecedent of k or "k-1".
 
-* Satisfies all of the above acceptance criteria.
+ A month value was captured on each iteration such that the value at column index 0 row k was set as the value of the variable month. This enabled a given change between two elements in the array to be associated with a month in which the change in value could be said to have taken place.
 
-### Deployment: 32%
+A new 2D array called sumChanges was added to on each iteration via the .push method with the value of the month stored in column 0, and the value of the change stored at column 1. 
 
-* Application deployed at live URL.
+This array "sumChanges" will be discussed in greater detail in the next section where it is used to provide the figures for the greates increase/decrease. At this point it is simply being instantiated for later use.
 
-* Application loads with no errors.
+"totalChange" is used for the specific purposes of capturing the sum of all of the changes between values. Following the final iteration of the for loop, the value of totalChanges will be equal to the summation of all changes between values in the finances array.
 
-* Application GitHub URL submitted.
+avgChange is then then set to the value of totalChanges / (totalMonths -1). Upon the final iteration, avgChange will be the figure required to show the average of all changes between elements of the array finances.
 
-* GitHub repository contains application code.
+The result gained from the calculation of average changes was $-2315.12.
 
-### Repository Quality: 23%
+![Print out of the average change](Assets/print-out-avg-change.png)
 
-* Repository has a unique name.
+N.b. totalMonths was a variable from the previous section which stores the total number of months in the array finances.
 
-* Repository follows best practices for file structure and naming conventions.
+N.b. The averag change has been rounded for presentation.
 
-* Repository follows best practices for variable naming conventions, indentation, quality comments, etc.
+## Algorithms 3a and 3b identifying the largest rise and largest fall in value.
 
-* Repository contains multiple descriptive commit messages.
+Discussion now returns to the array created in the previous section of this readme "sumChanges".
 
-* Repository contains quality README file with description, screenshot, and link to deployed application.
+The previous section made clear that sumChanges stored each change between two values in the array finances, and stored the month in which the change took place.
 
-### Application Quality: 5%
+To identify the greatest rise between two elements in the array finances, it was possible to simply iterate through sumChanges column index [1] with the counter l and compare the value at [l][1] with a zero initialised varaiable "lrgstRise". On each iteration the value of the element at position [l][1] is compared with the 0 initialised "lrgstRise". If the element of the array was greater than "lrgstRise", then "lrgstRise" is set equal to the value at [l][1] and a variable lrgstRiseMonth is set equal to the vaue at [l][0]- if it was smaller, the counter just progressed and no change to lrgstRise occured. On completion of the loop lrgstRiseMonth stored the month in which the largest rise between two elements of the array took place, and lrgstRise the value of the change.
 
-* Application resembles the mock-up functionality provided in the Challenge instructions.
+![Algorithm which identifies largest rise and month](Assets/alg3a.png)
 
-## Review
+The inverse of this process with a counter m is shown below to calculate/identify the value of the lrgstFall and lrgstFallMonth.
 
-You are required to submit BOTH of the following for review:
+![Algorithm which identifies largest fall and month](Assets/alg3b.png)
 
-* The URL of the deployed application.
 
-* The URL of the GitHub repository that contains your code. Give the repository a unique name and include a README file that describes the project.
+## Results:
 
----
+The results of the successive algortithms are printed out in an alert when the JS runs.
 
-## Copyright
+![Results printed to alert](Assets/alert-output.png)
 
-© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+The results also print to terminal as follows:
+
+![Results printed to terminal](Assets/terminal-output.png)
